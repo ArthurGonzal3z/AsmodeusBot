@@ -1,0 +1,18 @@
+import fs from "fs"
+let handler = m => m
+handler.all = async function (m) {
+let vn = './media/bot.mp3'
+let chat = global.db.data.chats[m.chat]
+let name = await conn.getName(m.sender)
+//const estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: {orderMessage: { itemCount : -999999, status: 1, surface : 1, message: '𝑇ℎ𝑒 𝑀𝑦𝑠𝑡𝑖𝑐 - 𝐵𝑜𝑡', orderTitle: 'Bang', thumbnail: fs.readFileSync('./Menu2.jpg'), sellerJid: '0@s.whatsapp.net'}}}
+//const estiloaudio = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: {"audioMessage": { "mimetype":"audio/ogg; codecs=opus", "seconds": "99569", "ptt": "true"}}}  
+if (/^que es roster|que es roster?$/i.test(m.text) && !chat.isBanned) { 
+conn.sendPresenceUpdate('composing', m.chat)    
+//conn.sendButton(m.chat, '', wm, [['𝙼𝙴𝙽𝚄 𝙳𝙴 𝙲𝙾𝙼𝙰𝙽𝙳𝙾𝚂', `#menu`]], 'conversation', { sendEphemeral: true, quoted: m })
+await m.reply(`*Hola ${name} , La palabra "Rooster" hace referencia a un equipo o grupo especial el cual se le asignan las labores de jugar torneos`)
+//conn.sendMessage(m.chat, { audio: { url: vn }, fileName: 'error.mp3', mimetype: 'audio/mp4', seconds: '4556', ptt: true }, { quoted: m })      
+//conn.sendFile(m.chat, vn, 'bot.mp3', null, m, true, { type: 'audioMessage', seconds: '4556', ptt: true, sendEphemeral: true, quoted: m })
+}
+return !0
+}
+export default handler
